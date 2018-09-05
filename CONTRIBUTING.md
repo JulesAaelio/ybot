@@ -11,6 +11,10 @@ please discuss it in an issue first. If fixing a bug, there should be an issue d
 
 You can use the git-flow plugin.
 
+## Make beautiful commits ! 
+See https://chris.beams.io/posts/git-commit/
+
+
 ## Create a pull-request and prepare to be review ! 
 
 You must create a pull-request with your changes, so it can be reviewed by another developer and merged.

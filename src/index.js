@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 const bot = new Discord.Client();
 
 bot.on('ready', function (evt) {
-    console.log('Connected');
+    console.log(`Connected at ${new Date()}`);
 });
 
 require('./features/welcome-newcomers')(bot);

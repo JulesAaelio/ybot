@@ -4,7 +4,7 @@ const bot = new Discord.Client();
 const express = require('express');
 const app = express();
 bot.on('ready', function (evt) {
-    console.log('Connected');
+    console.log(`Connected at ${new Date()}`);
 });
 
 bot.on("message", message => {

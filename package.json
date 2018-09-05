@@ -23,6 +23,7 @@
   "homepage": "https://github.com/discord-ynov-lyon/discord-bot#readme",
   "dependencies": {
     "discord.js": "^11.4.2",
-    "dotenv": "^6.0.0"
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3"
   }
 }

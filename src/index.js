@@ -8,7 +8,7 @@ const app = express();
 app.use(bodyParser.json());
 
 bot.on('ready', function (evt) {
-    console.log(`Connected at ${new Date()}`);
+    console.log(`Connected at ${new Date()} !`);
 });
 
 require('./features/welcome-newcomers')(bot);

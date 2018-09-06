@@ -11,11 +11,6 @@ bot.on('ready', function (evt) {
     console.log(`Connected at ${new Date()}`);
 });
 
-bot.on("message", message => {
-    console.log(message);
-});
-
-
 require('./features/welcome-newcomers')(bot);
 require('./features/update-guidelines')(bot,app);
 

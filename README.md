@@ -1,17 +1,16 @@
 # discord-bot
 
-## Install 
-```markdown
-npm install
-```
-
 ## Development 
 
+1. Set ENV=dev in [.env](.env) file.
+
+2. Run docker 
+
 ```markdown
-npm run develop
+docker-compose up --build 
 ```
 
 ### Usage 
 ```markdown
-npm start
+docker-compose up --build -d
 ```

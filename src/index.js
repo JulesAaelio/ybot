@@ -14,6 +14,10 @@ bot.on('ready', function (evt) {
 require('./features/welcome-newcomers')(bot);
 require('./features/update-guidelines')(bot,app);
 
+require('./features/send-confirmation')().then((err, info) => {
+    console.log(err);
+    console.log(info);
+});
 
 app.listen(3000);
 

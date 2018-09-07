@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const app = express();
 
 app.use(bodyParser.json());
+app.use(express.static('src/assets'));
 
 bot.on('ready', function (evt) {
     console.log(`Connected at ${new Date()} !`);
@@ -13,11 +14,6 @@ bot.on('ready', function (evt) {
 
 require('./features/welcome-newcomers')(bot);
 require('./features/update-guidelines')(bot,app);
-
-require('./features/send-confirmation')().then((err, info) => {
-    console.log(err);
-    console.log(info);
-});
 
 app.listen(3000);
 

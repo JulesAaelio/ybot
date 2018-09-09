@@ -9,16 +9,14 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-async function sendConfirmationEmail() {
-
-
+async function sendConfirmationEmail(to, link) {
     return transporter.sendMail({
         from: "YBot - Discord Ynov Lyon - <discord-ynov-lyon@outlook.com>",
-        to: "jules.laurent@ynov.com",
-        subject: 'tester',
+        to: to,
+        subject: 'Confirme ton adresse mail ! ',
         html : pug.renderFile('src/templates/mail.pug',  {
                 pseudo: 'Jules',
-                link: 'www.google.com',
+                link: link,
                 image: process.env.hostname + '/images/logo.png'
             }
         )

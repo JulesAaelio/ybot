@@ -3,6 +3,7 @@ const Discord = require('discord.js');
 const bot = new Discord.Client();
 const express = require('express');
 const bodyParser = require('body-parser');
+const database = require('./utils/database');
 const app = express();
 
 app.use(bodyParser.json());

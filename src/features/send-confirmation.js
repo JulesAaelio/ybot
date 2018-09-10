@@ -1,5 +1,7 @@
 const nodemailer = require('nodemailer');
 const pug = require('pug');
+const mailRegexp = /^(.*)@ynov.com$/;
+
 const transporter = nodemailer.createTransport({
     host: process.env.smtp_host,
     port: 465,
@@ -8,6 +10,10 @@ const transporter = nodemailer.createTransport({
         pass: process.env.smtp_password,
     }
 });
+
+async function bla() {
+
+}
 
 async function sendConfirmationEmail(to, link) {
     return transporter.sendMail({
@@ -23,4 +29,14 @@ async function sendConfirmationEmail(to, link) {
     })
 }
 
-module.exports = sendConfirmationEmail;
+module.exports = (bot, app, db) => {
+  bot.on('message', (message) => {
+      if(message.channel.id === process.env.newcomers_channel_id && message.author.id !== bot.user.id) {
+          if(mailRegexp.test(message.content)) {
+            console.log(message.author)
+          }else {
+              message.reply('please provide a valid academic address');
+          }
+      }
+  })
+};

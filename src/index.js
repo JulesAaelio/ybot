@@ -15,6 +15,7 @@ bot.on('ready', function (evt) {
 
 require('./features/welcome-newcomers')(bot);
 require('./features/update-guidelines')(bot,app);
+require('./features/send-confirmation')(bot,app, database);
 
 app.listen(3000);
 

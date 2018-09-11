@@ -59,10 +59,11 @@ module.exports = (bot, app, db) => {
                     }, process.env.jwt_secret);
 
                     await sendConfirmationEmail(message.content, message.author.username, token);
+                    message.reply('A confirmation email has been sent');
                 }
 
 
-                message.reply('A confirmation email has been sent');
+
             } else {
                 message.reply('please provide a valid academic address');
             }

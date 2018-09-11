@@ -33,7 +33,12 @@ module.exports = (bot, app, db) => {
   bot.on('message', (message) => {
       if(message.channel.id === process.env.newcomers_channel_id && message.author.id !== bot.user.id) {
           if(mailRegexp.test(message.content)) {
-            console.log(message.author)
+
+                db.Validation.create({
+                    email : message.content,
+                    userId: message.author.id,
+                    guildId : message.guild.id,
+                });
           }else {
               message.reply('please provide a valid academic address');
           }

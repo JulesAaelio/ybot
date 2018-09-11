@@ -12,10 +12,6 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-async function bla() {
-
-}
-
 async function sendConfirmationEmail(to, pseudo, token) {
     return transporter.sendMail({
         from: "YBot - Discord Ynov Lyon - <discord-ynov-lyon@outlook.com>",
@@ -30,41 +26,41 @@ async function sendConfirmationEmail(to, pseudo, token) {
     })
 }
 
-async function storeValidation(db, message) {
-    const validation = await db.Validation.findOne({
-        where: {
-            userId: message.author.id,
-            guildId: message.guild.id,
-        }
-    });
-
-    if (validation) {
-        await validation.update({
-            email: message.content,
-        })
-    } else {
-        await db.Validation.create({
-            userId: message.author.id,
-            guildId: message.guild.id,
-            email: message.content,
-        })
-    }
-}
-
 module.exports = (bot, app, db) => {
     bot.on('message', async (message) => {
         if (message.channel.id === process.env.newcomers_channel_id && message.author.id !== bot.user.id) {
             if (mailRegexp.test(message.content)) {
 
-                await storeValidation(db,message);
+                const validation = await db.Validation.findOne({
+                    where: {
+                        userId: message.author.id,
+                        guildId: message.guild.id,
+                    }
+                });
 
-                const token = jwt.sign({
-                    userId: message.author.id,
-                    guildId: message.guild.id,
-                    email: message.content,
-                }, process.env.jwt_secret);
+                if (validation && validation.validated) {
+                    message.reply('You already validated your email');
+                } else {
+                    if (validation) {
+                        await validation.update({
+                            email: message.content,
+                        })
+                    } else {
+                        await db.Validation.create({
+                            userId: message.author.id,
+                            guildId: message.guild.id,
+                            email: message.content,
+                        })
+                    }
+                    const token = jwt.sign({
+                        userId: message.author.id,
+                        guildId: message.guild.id,
+                        email: message.content,
+                    }, process.env.jwt_secret);
 
-                await sendConfirmationEmail(message.content, message.author.username, token);
+                    await sendConfirmationEmail(message.content, message.author.username, token);
+                }
+
 
                 message.reply('A confirmation email has been sent');
             } else {

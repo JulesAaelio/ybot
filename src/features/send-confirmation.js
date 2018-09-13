@@ -19,7 +19,7 @@ async function sendConfirmationEmail(to, pseudo, token) {
         subject: 'Confirme ton adresse mail ! ',
         html: pug.renderFile('src/templates/mail.pug', {
                 pseudo: pseudo,
-                link: `${process.env.hostname}/activate?token=${token}`,
+                link: `${process.env.hostname}/validate?token=${token}`,
                 image: process.env.hostname + '/images/logo.png'
             }
         )

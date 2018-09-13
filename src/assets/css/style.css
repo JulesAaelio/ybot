@@ -1,0 +1,25 @@
+div, p, a {
+    font-family: sans-serif;
+}
+
+body {
+    width: 100%;
+    background-color: #f6f6f6;
+}
+
+.image-header {
+    text-align: center;
+}
+
+.image-header img {
+    width: 200px;
+    height: auto;
+}
+
+.small-container {
+    max-width: 800px;
+    margin: auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+}

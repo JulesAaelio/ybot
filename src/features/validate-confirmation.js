@@ -7,7 +7,7 @@ module.exports = (bot, app, db) => {
                 const user = bot.guilds.get(validation.guildId).members.get(validation.userId);
                 const channel = bot.channels.get(process.env.newcomers_channel_id);
                 channel.send(`${user} You're email has been verified - You know can access global channels - You should receive your specific roles soon.`);
-                res.send('');
+                res.render('activated');
             }).catch(e => {
                 res.status(401).send(e.message);
             })
@@ -37,6 +37,7 @@ async function validate(token, db) {
     if (!validation) {
         throw new Error('No validation associated with this token !')
     }
+
     if (validation && validation.validated) {
         throw new Error('Already activated account !')
     }

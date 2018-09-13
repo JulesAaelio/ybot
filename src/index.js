@@ -8,6 +8,8 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(express.static('src/assets'));
+app.set('view engine', 'pug');
+app.set('views','./src/templates');
 
 bot.on('ready', function (evt) {
     console.log(`Connected at ${new Date()} !`);

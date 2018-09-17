@@ -18,6 +18,9 @@ module.exports = (bot, app, db) => {
             }).then((user) => {
                 const channel = bot.channels.get(process.env.newcomers_channel_id);
                 channel.send(`${user} You're email has been verified - You know can access global channels - You should receive your specific roles soon.`);
+
+                const notificationChannel = bot.channels.get(process.env.newcomers_validation_notification_channel_id);
+                notificationChannel.send(`${user} has validate his academic email address. Please add specific roles`);
             }).catch(e => {
                 console.log('Une erreur est survenue lors du paramétrage de votre compte');
             });

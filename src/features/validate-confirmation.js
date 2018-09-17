@@ -12,6 +12,9 @@ module.exports = (bot, app, db) => {
             }).then((validation) => {
                 const user = bot.guilds.get(validation.guildId).members.get(validation.userId);
                 return user.setNickname(parseNameFromEmail(validation.email));
+            }).then(user => {
+              const role = user.guild.roles.get(process.env.base_role_id);
+              return user.addRole(role);
             }).then((user) => {
                 const channel = bot.channels.get(process.env.newcomers_channel_id);
                 channel.send(`${user} You're email has been verified - You know can access global channels - You should receive your specific roles soon.`);

@@ -1,0 +1,1 @@
+openssl aes-256-cbc -K $encrypted_0a948218ab88_key -iv $encrypted_0a948218ab88_iv -in .env.prod.enc -out .env.prod -d

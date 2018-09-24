@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-openssl aes-256-cbc -K $encrypted_0a948218ab88_key -iv $encrypted_0a948218ab88_iv -in .env.prod.enc -out .env.prod -d
+openssl aes-256-cbc -K $encrypted_0a948218ab88_key -iv $encrypted_0a948218ab88_iv -in .env.prod.enc -out .env -d
 git remote add deploy $deploy_uri
 git branch
 git checkout master -f

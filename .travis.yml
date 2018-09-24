@@ -1,0 +1,14 @@
+language: node_js #
+node_js:
+  - "node" #Use latest version of nodejs
+sudo: required
+services:
+    - docker
+branches:
+  only: # for branch master only
+    - master
+before_script: .travis/before_script.sh # Prepare the environment before running test and build.
+script:
+  - docker-compose --verbose up --build -d
+after_success:
+ - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then ./.travis/after_success.sh; fi #Deploy after test and build success

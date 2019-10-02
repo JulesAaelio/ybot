@@ -22,7 +22,6 @@ const db = new sequelize(process.env.MYSQL_DATABASE,process.env.MYSQL_USER,proce
 const models = requireModels(db,__dirname+'/models');
 
 module.exports = async () => {
-    console.log(db);
     try {
         await retry(() => {
             db.authenticate()
@@ -34,7 +33,7 @@ module.exports = async () => {
     }
 
     try {
-        await db.sync();
+        await db.sync( );
         console.log("[DB] MySQL database has been synchronized");
     } catch (e) {
         console.error("[DB] Error synchronizing MySQL database", e);

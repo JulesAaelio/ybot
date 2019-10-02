@@ -18,9 +18,10 @@ bot.on('ready', function (evt) {
 (async () => {
     const database = await require('./utils/database')();
 
-    require('./features/welcome-newcomers')(bot);
+    require('./features/welcome-newcomers')(bot, database);
     require('./features/update-guidelines')(bot,app);
-    require('./features/send-confirmation')(bot,app, database);
+    // require('./features/send-confirmation')(bot,app, database);
+    require('./features/commands')(bot,app, database);
     require('./features/validate-confirmation')(bot,app, database);
 
     bot.login(process.env.discord_token)

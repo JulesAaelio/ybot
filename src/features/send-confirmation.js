@@ -27,10 +27,10 @@ async function sendConfirmationEmail(to, pseudo, token) {
 }
 
 module.exports = (bot, app, db) => {
-    bot.on('message', async (message) => {
-        if (message.channel.id === process.env.newcomers_channel_id && message.author.id !== bot.user.id) {
-            if (mailRegexp.test(message.content)) {
 
+    return async (arguments, message) => {
+            const mail = arguments[0];
+            if (mail && mailRegexp.test(mail)) {
                 const validation = await db.Validation.findOne({
                     where: {
                         userId: message.author.id,
@@ -49,13 +49,13 @@ module.exports = (bot, app, db) => {
                         await db.Validation.create({
                             userId: message.author.id,
                             guildId: message.guild.id,
-                            email: message.content,
+                            email: mail,
                         })
                     }
                     const token = jwt.sign({
                         userId: message.author.id,
                         guildId: message.guild.id,
-                        email: message.content,
+                        email: mail,
                     }, process.env.jwt_secret);
 
                     await sendConfirmationEmail(message.content, message.author.username, token);
@@ -68,5 +68,4 @@ module.exports = (bot, app, db) => {
                 message.reply('please provide a valid academic address');
             }
         }
-    })
 };

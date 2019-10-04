@@ -12,7 +12,11 @@ module.exports = (bot, app, db) => {
                         require('./send-confirmation')(bot,app,db)(arguments, message);
                         break;
                     case 'nickname':
-                        require('./change-nickname')(bot,app,db)(arguments, message);
+                        try {
+                            require('./change-nickname')(bot,app,db)(arguments, message);
+                        } catch (e) {
+                            await message.reply(e.message);
+                        }
                         break;
                     case 'reset-nickname':
                         try {

@@ -2,7 +2,7 @@ const mailRegexp = /^(.*)\.(.*)@ynov.com$/;
 module.exports = (bot, app, db) => {
 
     const resetNicknames = async (guildId) => {
-        const validations = db.Validation.findAll({
+        const validations = await db.Validation.findAll({
             where: {
                 guildId: guildId
             }

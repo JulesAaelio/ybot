@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 module.exports =  (bot, app, db) => {
-    const setNickname = require('./set-nickname')(bot, app, db);
+    const setNickname = require('./set-nickname')(bot, app, db).setNickname;
     const setPredefinedRoles = require('./set-predefined-roles')(bot, app, db);
 
     app.get('/validate', async (req, res) => {

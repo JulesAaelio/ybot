@@ -14,6 +14,14 @@ module.exports = (bot, app, db) => {
                     case 'nickname':
                         require('./change-nickname')(bot,app,db)(arguments, message);
                         break;
+                    case 'reset-nickname':
+                        try {
+                            require('./set-nickname')(bot,app,db).resetNicknames(message.guild.id);
+                        }catch (e) {
+                            console.error(e);
+                            await message.reply("Sorry, it didn't work.");
+                        }
+                        break;
                 }
             }
 

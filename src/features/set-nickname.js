@@ -1,6 +1,31 @@
 const mailRegexp = /^(.*)\.(.*)@ynov.com$/;
 module.exports = (bot, app, db) => {
-    return async (user, email = null) => {
+
+    const resetNicknames = async (guildId) => {
+        const validations = db.Validation.findAll({
+            where: {
+                guildId: guildId
+            }
+        });
+        const guild = bot.guilds.get(guildId);
+        if(!guild) {
+            throw new Error("Guild not found");
+        }
+
+        for (let i = 0; i < validations.length; i++) {
+            if(validations[i].email) {
+                    const member = guild.members.get(validations[i].userId);
+                    const nickname = parseNameFromEmail(validations[i].email);
+                    if(nickname && member) {
+                        member.setNickname(nickname).then(() => {
+                            console.log(`Nickname has been set for user ${member.id}`)
+                        });
+                    }
+                }
+            }
+    };
+
+    const setNickname =  async (user, email = null) => {
            try {
                if(email == null) {
                    const validation = await db.Validation.findOne({
@@ -27,8 +52,16 @@ module.exports = (bot, app, db) => {
                console.log('Something went wrong setting up the nickname');
                console.error(e);
            }
+    };
+
+    module.exports = {
+        resetNicknames,
+        setNickname
     }
 };
+
+
+
 
 parseNameFromEmail = (email) => {
     let matches = email.match(mailRegexp);
@@ -36,7 +69,7 @@ parseNameFromEmail = (email) => {
         if (matches[1] && matches[2]) {
             const firstname = matches[1].replace(/^\w/, c => c.toUpperCase());
             const surname = matches[2].toUpperCase();
-            return `${firstname} ${surname}`
+            return `${surname} ${firstname} `
         }
     }
     throw new Error('invalid email');

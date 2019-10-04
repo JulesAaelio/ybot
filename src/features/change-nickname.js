@@ -14,9 +14,9 @@ module.exports = (bot, app, db) => {
             // We'll handle others nicknames changing that later
         }
         const nickname = user.nickname;
-        const explodedNickname = nickname.match(/([^|]+)[|]{0,1}([^|]*)/);
+        const explodedNickname = nickname.match(/([^-]+)[-]{0,1}([^-]*)/);
         if(explodedNickname) {
-            const updatedNickname =   `${explodedNickname[0].trim()} | ${newNickname}`;
+            const updatedNickname =   `${explodedNickname[1].trim()} | ${newNickname}`;
             try {
                 await user.setNickname(updatedNickname);
                 console.log('Updated nickame')

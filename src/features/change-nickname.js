@@ -23,7 +23,7 @@ module.exports = (bot, app, db) => {
             } catch (e) {
                 console.log(`Something went wrong updating the nickname for ${user.id}`);
                 console.error(e);
-                if(e.message.contains('Must be 32 or fewer in length')){
+                if(e.message.includes('Must be 32 or fewer in length')){
                     throw new Error('Nickname is too long');
                 }
             }

@@ -13,7 +13,7 @@ module.exports = (bot, app, db) => {
                         break;
                     case 'nickname':
                         try {
-                            require('./change-nickname')(bot,app,db)(arguments, message);
+                            await require('./change-nickname')(bot,app,db)(arguments, message);
                         } catch (e) {
                             await message.reply(e.message);
                         }

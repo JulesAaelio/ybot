@@ -54,7 +54,7 @@ module.exports = (bot, app, db) => {
            }
     };
 
-    module.exports = {
+    return {
         resetNicknames,
         setNickname
     }

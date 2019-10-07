@@ -43,7 +43,7 @@ module.exports = (bot, app, db) => {
                 } else {
                     if (validation) {
                         await validation.update({
-                            email: message.content,
+                            email: mail,
                         })
                     } else {
                         await db.Validation.create({

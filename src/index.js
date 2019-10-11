@@ -15,6 +15,7 @@ bot.on('ready', function (evt) {
     console.log(`Connected at ${new Date()} !`);
 });
 
+
 (async () => {
     const database = await require('./utils/database')();
 
@@ -23,9 +24,14 @@ bot.on('ready', function (evt) {
     // require('./features/send-confirmation')(bot,app, database);
     require('./features/commands')(bot,app, database);
     require('./features/validate-confirmation')(bot,app, database);
+    require('./features/get-roles')(bot,app, database);
 
     bot.login(process.env.discord_token)
         .catch((e) => console.log(e));
+
+    bot.on('error',(error => {
+        console.error(error);
+    }));
 
     app.listen(3000);
 

@@ -26,6 +26,17 @@ module.exports = (bot, app, db) => {
                             await message.reply("Sorry, it didn't work.");
                         }
                         break;
+                    case 'trombi':
+                        const subcommand = arguments.shift();
+                        switch (subcommand) {
+                            case 'whois':
+                                require('./trombi')(bot,app,db).getPicture(arguments, message);
+                                break;
+                            case 'set-picture':
+                                require('./trombi')(bot, app, db).setPicture(arguments,message);
+                                break;
+                        }
+                        break;
                 }
             }
 

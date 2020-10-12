@@ -13,13 +13,17 @@ module.exports = (bot, app, db) => {
         let newMessage = '';
         for (let i = 0; i < commandArguments.length; i++) {
             let argument = commandArguments[i].split(':');
-            if(commandArguments.length !== 2)
+            if(argument.length !== 2)
             {
                 message.reply('Error : Invalid arguments')
                 throw new Error('Invalid arguments')
             }
 
             let role = message.guild.roles.resolve(argument[1].replace(/\D/g,''));
+            if(!role){
+                message.reply('Error : Invalid role argument. You need to tag the roles')
+                throw new Error('Invalid role argument')
+            }
 
             emojiRoles.push({emoji: argument[0].trim(), role: role});
         }

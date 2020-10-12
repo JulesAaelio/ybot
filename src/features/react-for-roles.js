@@ -45,7 +45,7 @@ module.exports = (bot, app, db) => {
 
         const reactionCollector =  collectorMessage.createReactionCollector((reaction) => {
             return emojiRoles.map(emojiRole => emojiRole.emoji).includes(reaction.emoji.name);
-        });
+        }, { dispose: true });
 
         reactionCollector.on("collect", (reaction, user) => {
             if(user.bot) {
@@ -57,6 +57,18 @@ module.exports = (bot, app, db) => {
             message.guild.members.resolve(user.id).roles.add(emojiRole.role);
             console.log(`[ROLE] ${user.username} requested role ${emojiRole.role.name}`)
         });
+
+        reactionCollector.on("remove", (reaction, user) => {
+            if(user.bot) {
+                return
+            }
+            let emojiRole =  emojiRoles.find(er => {
+                return er.emoji === reaction.emoji.name;
+            })
+            message.guild.members.resolve(user.id).roles.remove(emojiRole.role);
+            console.log(`[ROLE] ${user.username} removed role ${emojiRole.role.name}`)
+        });
+
     }
 
     return {

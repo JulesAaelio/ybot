@@ -52,7 +52,7 @@ module.exports = (bot, app, db) => {
                 return
             }
             let emojiRole =  emojiRoles.find(er => {
-                return er.emoji = reaction.emoji.name;
+                return er.emoji === reaction.emoji.name;
             })
             message.guild.members.resolve(user.id).roles.add(emojiRole.role);
             console.log(`[ROLE] ${user.username} requested role ${emojiRole.role.name}`)

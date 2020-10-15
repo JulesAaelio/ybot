@@ -10,7 +10,7 @@ module.exports = (bot, app, db) => {
         if(roles) {
             roles = JSON.parse(roles);
             for (let i = 0; i < roles.length; i++) {
-                user.addRoles(roles).then(() => {
+                user.roles.add(roles).then(() => {
                     console.log(`Roles has been set up for user ${user.id}`)
                 })
             }

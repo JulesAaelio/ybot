@@ -16,7 +16,7 @@ module.exports =  (bot, app, db) => {
                 }
 
                 if(validation) {
-                    const user = bot.guilds.get(validation.guildId).members.get(validation.userId);
+                    const user = bot.guilds.resolve(validation.guildId).members.resolve(validation.userId);
 
                     const validationActions = [];
                     validationActions.push(setNickname(user, validation.email));
@@ -43,7 +43,7 @@ module.exports =  (bot, app, db) => {
             }
         });
         if(channelId) {
-            const channel = bot.channels.get(channelId);
+            const channel = bot.channels.resolve(channelId);
             channel.send(`${user} You're email has been verified - You know have a beautiful name and predefined roles for you. Feel free to contact moderation team.`);
         }
     }

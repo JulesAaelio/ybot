@@ -1,6 +1,6 @@
 module.exports = (bot, app, db) => {
     return async (user, email) => {
-        let { roles } = await db.PredefinedRole.findOne( {
+        let { roles } = await db.PredefinedRole.findOne({
             where : {
                 guildId: user.guild.id,
                 email: email

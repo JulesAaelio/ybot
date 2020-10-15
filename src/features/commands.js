@@ -36,6 +36,7 @@ module.exports = (bot, app, db) => {
                                 require('./trombi')(bot, app, db).setPicture(arguments,message);
                                 break;
                         }
+                        break;
                     case 'roles':
                         require('./react-for-roles')(bot,app,db).sendMessage(arguments, message);
                         break;

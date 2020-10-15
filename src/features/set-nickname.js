@@ -7,14 +7,14 @@ module.exports = (bot, app, db) => {
                 guildId: guildId
             }
         });
-        const guild = bot.guilds.get(guildId);
+        const guild = bot.guilds.resolve(guildId);
         if(!guild) {
             throw new Error("Guild not found");
         }
 
         for (let i = 0; i < validations.length; i++) {
             if(validations[i].email) {
-                    const member = guild.members.get(validations[i].userId);
+                    const member = guild.members.resolve(validations[i].userId);
                     const nickname = parseNameFromEmail(validations[i].email);
                     if(nickname && member) {
                         member.setNickname(nickname).then(() => {

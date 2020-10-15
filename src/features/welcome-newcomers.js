@@ -8,7 +8,7 @@ module.exports = (bot, database) => {
             }
         });
         if(channelId) {
-            member.guild.channels.get(channelId).send(`Bienvenue ${member.user} ! Please use !y validate \`your.address@ynov.com\` to get your roles ! `);
+            member.guild.channels.resolve(channelId).send(`Bienvenue ${member.user} ! Please use !y validate \`your.address@ynov.com\` to get your roles ! `);
         }
     });
 

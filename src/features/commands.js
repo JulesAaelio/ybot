@@ -40,6 +40,9 @@ module.exports = (bot, app, db) => {
                     case 'roles':
                         require('./react-for-roles')(bot,app,db).sendMessage(arguments, message);
                         break;
+                    case 'help':
+                        require('./help')(bot,app,db).sendHelp(arguments, message);
+                        break;
                 }
             }
 

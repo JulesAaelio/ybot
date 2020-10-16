@@ -5,7 +5,7 @@ module.exports = (bot, app, db) => {
         }
 
         const user = message.mentions.users.array()[0];
-        const trombi = await db.Trombi.find({
+        const trombi = await db.Trombi.findOne({
             where: {
                 userId: user.id,
                 guildId : message.member.guild.id,
@@ -26,7 +26,7 @@ module.exports = (bot, app, db) => {
       } else {
           picture = arguments[0];
       }
-      const trombi = await db.Trombi.find({
+      const trombi = await db.Trombi.findOne({
           where : {
               userId: user.id,
               guildId: user.guild.id,

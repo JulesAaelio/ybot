@@ -1,3 +1,5 @@
+const MessageEmbed = require('discord.js').MessageEmbed;
+
 module.exports = (bot, app, db) => {
     const sendHelp =  async (arguments, message) => {
         const embed =  new MessageEmbed()

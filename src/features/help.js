@@ -5,11 +5,11 @@ module.exports = (bot, app, db) => {
         const embed =  new MessageEmbed()
             .setTitle('Ybot - Commandes disponibles ')
             .setColor(0xff0000)
-            .setDescription('**!y help** : Show help message' +
-                '**!y trombi whois @someone** : Show picture of user if registered' +
-                '**!y trombi set-picture <link>** : Set your picture, you can also add an attachment' +
-                '**!y nickname <nickname>** : Change your nickname ' +
-                '**!y validate <youradress@ynov.com>** : Send confirmation email ');
+            .setDescription('\`!y help\` : Show help message\n' +
+                '\`!y trombi whois @someone\`\` : Show picture of user if registered\n' +
+                '\`!y trombi set-picture <link>\` : Set your picture, you can also add an attachment\n' +
+                '\`!y nickname <nickname>\` : Change your nickname\n' +
+                '\`!y validate <youradress@ynov.com>\` : Send confirmation email\n');
 
 
         message.reply(embed)

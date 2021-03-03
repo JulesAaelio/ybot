@@ -30,7 +30,7 @@
     "jsonwebtoken": "^8.3.0",
     "mysql2": "^1.6.1",
     "nodemailer": "^4.6.8",
-    "pug": "^2.0.3",
+    "pug": "^3.0.1",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.5",
     "sequelize": "^6.3.5",
